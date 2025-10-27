@@ -1,0 +1,446 @@
+/* ===== RESET Y VARIABLES ===== */
+:root {
+  /* ----- Tema claro ----- */
+  --bg-body: #f1f5f9;
+  --bg-card: rgba(255, 255, 255, 0.95);
+  --bg-input: #ffffff;
+  --bg-detail: #f1f5f9;
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-inverted: #ffffff;
+  --icon-color: #2563eb;
+
+  --primary-color: #2563eb;
+  --primary-dark: #1d4ed8;
+  --accent-color: #f59e0b;
+  --error-color: #ef4444;
+  --white: #ffffff;
+
+  --font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  
+  --border-radius-lg: 0.75rem;
+  --border-radius-xl: 1rem;
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  
+  --transition-normal: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+}
+
+/* ----- Tema oscuro ----- */
+body.dark {
+  --bg-body: #0f172a;
+  --bg-card: #1e293b;
+  --bg-input: #1e293b;
+  --bg-detail: #1e293b;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --icon-color: #38bdf8;
+}
+
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background: var(--bg-body);
+  min-height: 100vh;
+  color: var(--text-primary);
+  transition: background var(--transition-slow), color var(--transition-slow);
+}
+
+/* ===== LAYOUT PRINCIPAL ===== */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-4);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+  padding: var(--space-6) 0;
+  position: relative;
+}
+
+.app-title {
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  color: var(--text-inverted);
+  margin-bottom: var(--space-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.app-title i {
+  color: var(--accent-color);
+  font-size: var(--font-size-3xl);
+}
+
+.app-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--text-inverted);
+  opacity: 0.8;
+  font-weight: 300;
+}
+
+/* BOTÓN TEMA */
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--bg-card);
+  border: none;
+  padding: var(--space-3);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition-normal);
+  color: var(--icon-color);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.08);
+}
+
+/* ===== FORMULARIO BÚSQUEDA ===== */
+.search-section {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-container {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.input-group {
+  flex: 1;
+  display: flex;
+  background: var(--bg-input);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+.input-group:focus-within {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
+}
+
+.search-input {
+  flex: 1;
+  padding: var(--space-4) var(--space-5);
+  border: none;
+  outline: none;
+  font-size: var(--font-size-lg);
+  background: transparent;
+  color: var(--text-primary);
+}
+
+.search-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.search-btn {
+  padding: var(--space-4) var(--space-6);
+  background: var(--primary-color);
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  transition: var(--transition-normal);
+  font-size: var(--font-size-lg);
+}
+
+.search-btn:hover {
+  background: var(--primary-dark);
+}
+
+.location-btn {
+  padding: var(--space-4);
+  background: var(--bg-input);
+  border: none;
+  border-radius: var(--border-radius-lg);
+  color: var(--icon-color);
+  cursor: pointer;
+  transition: var(--transition-normal);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.location-btn:hover {
+  background: var(--primary-color);
+  color: var(--white);
+}
+
+/* ===== ESTADOS ===== */
+.loading,
+.error,
+.weather-result {
+  display: none;
+}
+
+.loading.show,
+.error.show,
+.weather-result.show {
+  display: block;
+}
+
+.loading {
+  text-align: center;
+  padding: var(--space-12);
+  color: var(--text-inverted);
+}
+
+.error {
+  background: var(--error-color);
+  color: var(--white);
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--border-radius-lg);
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  margin: var(--space-4) 0;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-left: 4px solid var(--white);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto var(--space-4);
+}
+@keyframes spin { 100% { transform: rotate(360deg); }}
+
+/* ===== TARJETA DEL CLIMA ===== */
+.weather-card {
+  background: var(--bg-card);
+  border-radius: var(--border-radius-xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-xl);
+  max-width: 600px;
+  margin: 0 auto;
+  transition: var(--transition-slow);
+}
+
+.weather-header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-6);
+  border-bottom: 2px solid var(--bg-detail);
+}
+
+.city-name {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.current-date {
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+}
+
+.weather-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+@media (min-width: 768px) {
+  .weather-main {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+  }
+}
+
+.temperature-section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.current-temp {
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  line-height: 1;
+}
+
+.weather-condition {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+}
+
+.weather-icon {
+  width: 80px;
+  height: 80px;
+}
+
+.condition-text {
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.feels-like {
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+}
+
+/* ===== DETALLES DEL CLIMA ===== */
+.weather-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--bg-detail);
+  border-radius: var(--border-radius-lg);
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--bg-card);
+  border-radius: var(--border-radius-lg);
+}
+
+.detail-item i {
+  font-size: var(--font-size-2xl);
+  color: var(--icon-color);
+  width: 32px;
+}
+
+.detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.detail-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.detail-value {
+  font-size: var(--font-size-lg);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ===== FOOTER ===== */
+.app-footer {
+  text-align: center;
+  margin-top: var(--space-12);
+  padding: var(--space-6) 0;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .app-container {
+    padding: var(--space-3);
+  }
+  
+  .app-title {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .search-container {
+    flex-direction: column;
+  }
+  
+  .current-temp {
+    font-size: 3rem;
+  }
+  
+  .weather-card {
+    padding: var(--space-6);
+  }
+  
+  .weather-details {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== UTILIDADES ===== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===== TOGGLE THEME BUTTON ===== */
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--bg-card);
+  border: none;
+  color: var(--text-primary);
+  padding: var(--space-3);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition), background var(--transition);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle i {
+  pointer-events: none;
+}
+
+
